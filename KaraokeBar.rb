@@ -1,7 +1,7 @@
 class KaraokeBar
 
   attr_reader :name
-  attr_accessor :songs, :drinks, :lobby, :rooms
+  attr_accessor :songs, :drinks, :lobby, :rooms, :till
 
 
   def initialize(name)
@@ -10,6 +10,7 @@ class KaraokeBar
     @drinks = []
     @lobby = []
     @rooms = []
+    @till = 0
   end
 
   def greet(bar)
@@ -28,12 +29,17 @@ class KaraokeBar
     end
   end
 
-
-
-
-  def bar1_value
-    return @bar1.name
+def charge_guests(lobby_guests, fee)
+collected = 0
+  for guest in lobby_guests
+    guest.wallet -= fee
+    collected += fee
   end
+  @till += collected
+end
+
+
+
 
   def check_in_guests(rooms, guest1, guest2)
     lobby = [guest1, guest2]
@@ -44,7 +50,6 @@ class KaraokeBar
       room.add_guests_to_room(lobby)
     end
   end
-
 
 
 
