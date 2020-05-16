@@ -10,7 +10,6 @@ class TestRooms < MiniTest::Test
   def setup()
     @room1 = Rooms.new(4)
 
-    guest = "Barry"
   end
 
   def test_check_capacity__room_empty
@@ -32,6 +31,11 @@ class TestRooms < MiniTest::Test
 # assert_equal(1, @room1.check_capacity)
 # end
 
+def test_add_guests_to_room__guest_array
+  guest = ["one", "two"]
+  @room1.add_guests_to_room(guest)
+assert_equal(2, @room1.check_capacity)
+end
 
 def test_check_capacity__room_half_full
   @room1.guests = ["joe", "joe2"]

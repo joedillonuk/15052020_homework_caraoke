@@ -7,7 +7,10 @@ class TestGuests < MiniTest::Test
 
 
   def setup()
-@guest1 = Guests.new("Big Iain", 50, "Thriller")
+@guest1 = Guests.new("Jeff Turner", 50, "I Think We're Alone Now")
+@guest2 = Guests.new("Kelly McCormick", 50, "I Think We're Alone Now")
+@guest3 = Guests.new("Manuel Calavera", 10, "As Time Goes By")
+
   end
 
 
