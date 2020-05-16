@@ -29,28 +29,34 @@ class KaraokeBar
     end
   end
 
-def charge_guests(lobby_guests, fee)
-collected = 0
-  for guest in lobby_guests
-    guest.wallet -= fee
-    collected += fee
-  end
-  @till += collected
-end
-
-
-
-
-  def check_in_guests(rooms, guest1, guest2)
-    lobby = [guest1, guest2]
-
-    # for room in @rooms
-    #   if room.check_capacity >= @lobby.count
-    for room in rooms
-      room.add_guests_to_room(lobby)
+  def charge_guests(lobby_guests, fee)
+    collected = 0
+    for guest in lobby_guests
+      if guest.wallet >= fee
+        guest.wallet -= fee
+        collected += fee
+      else
+        p "Im sorry #{guest.name}, it's a £#{fee} to enter."
+        lobby_guests.delete(guest)
+      end
     end
+      @till += collected
+
   end
 
 
 
-end
+
+    def check_in_guests(rooms, guest1, guest2)
+      lobby = [guest1, guest2]
+
+      # for room in @rooms
+      #   if room.check_capacity >= @lobby.count
+      for room in rooms
+        room.add_guests_to_room(lobby)
+      end
+    end
+
+
+
+  end
