@@ -29,13 +29,20 @@ class Rooms
     end
   end
 
-def add_songs_to_playlist(playlist, songs_list)
-for song in songs_list
-  playlist.push(songs_list)
-end
-end
+  def add_songs_to_playlist(playlist, songs_list)
+    for song in songs_list
+      playlist.push(song)
+    end
+  end
+
+  def is_guests_fave_on_playlist(guest, playlist)
+    for song in playlist
+      if guest.fave_song == song.title
+        p "Oh my god I love #{song.title}! #{song.artist} is the best!"
+return true
+      end
+    end
+  end
 
 
-
-
-end
+  end
