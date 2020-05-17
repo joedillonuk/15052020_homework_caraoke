@@ -65,11 +65,13 @@ assert_equal(5, @guest4.wallet) # making sure Guest 4 wasn't chanrged
   end
 
   def test_check_in_guests
-
-    @bar1.check_in_guests(@rooms, @guest1, @guest2)
-    assert_equal(2, @room1.check_capacity)
+    @lobby = @potential_guests
+    @bar1.check_in_guests(@rooms, @lobby)
+    assert_equal(1, @room1.check_capacity)
   end
 
 
+# NOTE FOR TOMORROW!
+# Update arrays so that guests are moved, rather than copied.
 
 end

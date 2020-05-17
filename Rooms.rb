@@ -29,6 +29,13 @@ class Rooms
     end
   end
 
+def add_songs_to_playlist(playlist, songs_list)
+for song in songs_list
+  playlist.push(songs_list)
+end
+end
+
+
 
 
 end

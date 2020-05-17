@@ -38,6 +38,7 @@ class KaraokeBar
       else
         p "Im sorry #{guest.name}, it's a £#{fee} to enter."
         lobby_guests.delete(guest)
+        p "** #{guest.name} has gone home crying **"
       end
     end
       @till += collected
@@ -47,9 +48,7 @@ class KaraokeBar
 
 
 
-    def check_in_guests(rooms, guest1, guest2)
-      lobby = [guest1, guest2]
-
+    def check_in_guests(rooms, lobby)
       # for room in @rooms
       #   if room.check_capacity >= @lobby.count
       for room in rooms

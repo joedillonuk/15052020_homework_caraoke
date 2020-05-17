@@ -18,7 +18,16 @@ class TestSong < MiniTest::Test
 @song09 = ("Thank You For Being A Friend", "Cynthia Fee", "Pop", 1985)
 @song10 = ("You Oughta Know", "Alanis Morissette", "Pop", 1995)
 @song11 = ("I Think We're Alone Now", "Girls Aloud", "Electropop", 2006)
+
+
+
+@songs_list = [@song01, @song02, @song03, @song04, @song05, @song06, @song07, @song08, @song09, @song10, @song11]
+
+
   end
+
+
+
 
 
 
