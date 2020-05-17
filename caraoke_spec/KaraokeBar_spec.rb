@@ -20,7 +20,7 @@ class TestKaraokeBar < MiniTest::Test
     @guest3 = Guests.new("Manuel Calavera", 10, "As Time Goes By")
     @guest4 = Guests.new("Onlya Fiver", 5, "Ghost")
 
-# Below is an array of guests
+    # Below is an array of guests
     @potential_guests = [@guest1, @guest2, @guest3]
 
     @song01 = Song.new("Where The Wild Roses Grow", "Nick Cave & The Bad Seeds", "Rock", 1995)
@@ -34,39 +34,41 @@ class TestKaraokeBar < MiniTest::Test
     @song09 = Song.new("Thank You For Being A Friend", "Cynthia Fee", "Pop", 1985)
     @song10 = Song.new("You Oughta Know", "Alanis Morissette", "Pop", 1995)
     @song11 = Song.new("Livin' On A Prayer", "Bon Jovi", "Rock", 1986)
+    @song12 = Song.new("Say It Ain't So", "Weezer", "Rock", 1995)
 
 
-# Below is an array of the complete song list
+
+    # Below is an array of the complete song list
     @songs_list = [@song01, @song02, @song03, @song04, @song05, @song06, @song07, @song08, @song09, @song10, @song11]
 
 
   end
 
   # gets number of guests from user
-  # def test_greet
-  #   # test will check for party of 3 (integer).
-  #   assert_equal(3, @bar1.greet(@bar1))
-  # end
+  def test_greet
+    # test will check for party of 3 (integer).
+    assert_equal(3, @bar1.greet)
+  end
 
-  # def test_add_to_lobby
-  #   party = @bar1.greet(@bar1)
-  #   @bar1.add_to_lobby(@bar1.lobby, party, @potential_guests)
-  #   assert_equal(3, @bar1.lobby.count)
-  # end
+  def test_add_to_lobby
+    party = 3 # will normally aquire this from the method greet
+    @bar1.add_to_lobby(party, @potential_guests)
+    assert_equal(3, @bar1.lobby.count)
+  end
 
-  # def test_charge_guests__till_increase
-  # # setup
-  # # greeting guests and adding 3 to lobby from poential_guests
-  # party = @bar1.greet(@bar1) # returns number of guests to add to lobby from potential_guests array
-  # @bar1.add_to_lobby(@bar1.lobby, party, @potential_guests)
-  #   @bar1.charge_guests(@bar1.lobby, 10)
-  #   assert_equal(30, @bar1.till)
-  # end
+  def test_charge_guests__till_increase
+    # setup
+    # greeting guests and adding 3 to lobby from poential_guests
+    party = 3 # Will normally aquire this from the method greet. Returns number of guests to add to lobby from potential_guests array
+    @bar1.add_to_lobby(party, @potential_guests)
+    @bar1.charge_guests(10)
+    assert_equal(30, @bar1.till)
+  end
   #
   # def test_charge_guests__wallet_decrease
   #   # setup
   #   # greeting guests and adding 3 to lobby from poential_guests
-  #   party = @bar1.greet(@bar1) # returns number of guests to add to lobby from potential_guests array
+  #   party = @bar1.greet # returns number of guests to add to lobby from potential_guests array
   #   @bar1.add_to_lobby(@bar1.lobby, party, @potential_guests)
   # @bar1.charge_guests(@bar1.lobby, 10)
   # assert_equal(40, @guest1.wallet)
@@ -75,21 +77,23 @@ class TestKaraokeBar < MiniTest::Test
   # end
 
   def test_remove_guest_with_limited_funds
-    lobby_guests = [@guest1, @guest2, @guest4]
-    @bar1.charge_guests(lobby_guests, 10)
-    assert_equal(2, lobby_guests.count)
+    @bar1.lobby = [@guest1, @guest2, @guest4]
+    @bar1.charge_guests(10)
+    assert_equal(2, @bar1.lobby.count)
     assert_equal(20, @bar1.till) # ensuring money isn't collected for guest leaving lobby due to lack of funds
-assert_equal(5, @guest4.wallet) # making sure Guest 4 wasn't chanrged
+    assert_equal(5, @guest4.wallet) # making sure Guest 4 wasn't chanrged
   end
 
   def test_check_in_guests
     @lobby = @potential_guests
-    @bar1.check_in_guests(@rooms, @lobby)
+  @bar1.check_in_guests(@rooms, @lobby)
     assert_equal(1, @room1.check_capacity)
   end
 
-
-# NOTE FOR TOMORROW!
-# Update arrays so that guests are moved, rather than copied.
+  # def test_check_in_guests
+  #   @lobby = @potential_guests
+  #   @bar1.check_in_guests(@rooms, @lobby)
+  #   assert_equal(1, @room1.check_capacity)
+  # end
 
 end

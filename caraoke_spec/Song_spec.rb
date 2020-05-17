@@ -17,11 +17,13 @@ class TestSong < MiniTest::Test
 @song08 = ("Total Eclipse Of The Heart", "Bonnie Tyler", "Pop", 1983)
 @song09 = ("Thank You For Being A Friend", "Cynthia Fee", "Pop", 1985)
 @song10 = ("You Oughta Know", "Alanis Morissette", "Pop", 1995)
-@song11 = ("I Think We're Alone Now", "Girls Aloud", "Electropop", 2006)
+@song11 = ("I ", "Girls Aloud", "Electropop", 2006)
+@song12 = Song.new("Say It Ain't So", "Weezer", "Rock", 1995)
 
 
 
-@songs_list = [@song01, @song02, @song03, @song04, @song05, @song06, @song07, @song08, @song09, @song10, @song11]
+
+@songs_list = [@song01, @song02, @song03, @song04, @song05, @song06, @song07, @song08, @song09, @song10, @song11, @song12]
 
 
   end
