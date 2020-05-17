@@ -13,15 +13,22 @@ class TestKaraokeBar < MiniTest::Test
   def setup()
     @bar1 = KaraokeBar.new("Mr Singh's")
     @room1 = Rooms.new(4)
-    @rooms = [@room1]
+    @room2 = Rooms.new(4)
+    @room3 = Rooms.new(6)
+    @bar1.rooms = [@room1, @room2, @room3]
 
     @guest1 = Guests.new("Jeff Turner", 50, "I Think We're Alone Now")
     @guest2 = Guests.new("Kelly McCormick", 40, "I Think We're Alone Now")
     @guest3 = Guests.new("Manuel Calavera", 10, "As Time Goes By")
     @guest4 = Guests.new("Onlya Fiver", 5, "Ghost")
+    @guest5 = Guests.new("Rose Nylund", 100, "Thank You For Being A Friend")
+    @guest6 = Guests.new("Peggy Hill", 60, "You Oughta Know")
+    @guest7 = Guests.new("Dion Blaster", 1080, "Work Your Body")
 
-    # Below is an array of guests
+    # Below are arrays of guests
     @potential_guests = [@guest1, @guest2, @guest3]
+    @second_wave_guests = [@guest4, @guest5, @guest6, @guest7]
+    @everyone_wants_in = [@guest1, @guest2, @guest3, @guest4, @guest5, @guest6, @guest7]
 
     @song01 = Song.new("Where The Wild Roses Grow", "Nick Cave & The Bad Seeds", "Rock", 1995)
     @song02 = Song.new("Song 2", "Blur", "Rock", 1997)
@@ -84,12 +91,34 @@ class TestKaraokeBar < MiniTest::Test
     assert_equal(5, @guest4.wallet) # making sure Guest 4 wasn't chanrged
   end
 
-  def test_check_in_guests
-    @lobby = @potential_guests
-  @bar1.check_in_guests(@rooms, @lobby)
-    assert_equal(1, @room1.check_capacity)
-  end
 
+# Updated to remove arguments from method
+  def test_check_in_guests
+    @bar1.lobby = @potential_guests
+    @bar1.check_in_guests
+    assert_equal(1, @room1.check_capacity)
+end
+
+def test_check_in_guests__no_capacity_in_room1
+  # adding three guests into first room to ensure no capacity
+  @bar1.lobby = @potential_guests
+  @bar1.check_in_guests
+  # attempting to check in second wave of guests
+  @bar1.lobby = @second_wave_guests
+  @bar1.check_in_guests
+  assert_equal(0, @room2.check_capacity)
+end
+
+def test_return_max_capacity
+  assert_equal(6, @bar1.return_max_capacity)
+end
+
+def test_check_in_guests__over_max_capacity
+  @bar1.lobby = @everyone_wants_in
+  assert_equal("I'm sorry, the largest party we can accomodate is 6.", @bar1.check_in_guests)
+end
+
+# PREVIOUS TEST. This has now been updated to remove need for arguments
   # def test_check_in_guests
   #   @lobby = @potential_guests
   #   @bar1.check_in_guests(@rooms, @lobby)

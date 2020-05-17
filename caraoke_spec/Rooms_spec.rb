@@ -13,7 +13,9 @@ class TestRooms < MiniTest::Test
   def setup()
     @bar1 = KaraokeBar.new("Mr Singh's")
     @room1 = Rooms.new(4)
-    @rooms = [@room1]
+    @room2 = Rooms.new(4)
+    @room3 = Rooms.new(6)
+    @bar1.rooms = [@room1, @room2, @room3]
 
     @guest1 = Guests.new("Jeff Turner", 50, "I Think We're Alone Now")
     @guest2 = Guests.new("Kelly McCormick", 40, "I Think We're Alone Now")

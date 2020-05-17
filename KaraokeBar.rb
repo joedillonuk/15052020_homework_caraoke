@@ -41,23 +41,30 @@ class KaraokeBar
         p "** #{guest.name} has gone home crying **"
       end
     end
-      @till += collected
+    @till += collected
 
   end
 
 
 
 
-    def check_in_guests(rooms, lobby)
-      # for room in @rooms
-      #   if room.check_capacity >= @lobby.count
-      for room in rooms
-        p room
-        room.add_guests_to_room(lobby)
-        p room
+  # Updated to remove arguments from method
+  def check_in_guests
+    for room in rooms
+      if room.capacity - room.guests.count >= lobby.count
+         return room.add_guests_to_room(lobby)
       end
+    end
+    if lobby.count > self.return_max_capacity
+      p "I'm sorry, the largest party we can accomodate is #{self.return_max_capacity}."
+    else
+    p "Sorry, we don't have enough space for a party of #{lobby.count} at the moment."
+end
   end
 
+
+
+  # PREVIOUS METHOD. This has now been updated to remove need for arguments.
   # def check_in_guests(rooms, lobby)
   #      # for room in @rooms
   #      #   if room.check_capacity >= @lobby.count
@@ -66,5 +73,10 @@ class KaraokeBar
   #      end
   #    end
 
+def return_max_capacity
+  max = rooms.max_by{|room| room.capacity}
+  return max.capacity
+end
 
-  end
+
+end
