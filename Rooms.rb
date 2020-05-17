@@ -29,6 +29,15 @@ class Rooms
     end
   end
 
+  def check_out_all
+      self.guests.clear
+  end
+
+  def check_out_guest(guest)
+    self.guests.delete(guest)
+    p "#{guest.name} has left."
+  end
+
   def add_songs_to_playlist(playlist, songs_list)
     for song in songs_list
       playlist.push(song)

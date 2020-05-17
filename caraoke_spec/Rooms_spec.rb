@@ -91,6 +91,22 @@ def test_add_guests_to_room__guest_array
 assert_equal(2, @room1.check_capacity)
 end
 
+def test_check_out_all
+# adding some guests to room for test
+@room1.guests = [@guest1, @guest2, @guest3, @guest4]
+assert_equal(4, @room1.guests.count)
+@room1.check_out_all
+assert_equal(0, @room1.guests.count)
+end
+
+def test_check_out_guest
+  # adding some guests to room for test
+  @room1.guests = [@guest1, @guest2, @guest3, @guest4]
+  assert_equal(4, @room1.guests.count)
+  @room1.check_out_guest(@guest1)
+  assert_equal(3, @room1.guests.count)
+end
+
 def test_check_capacity__room_half_full
   @room1.guests = ["joe", "joe2"]
 # call the "add_guests_to_room" method here
